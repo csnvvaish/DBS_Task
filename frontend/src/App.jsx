@@ -63,6 +63,45 @@ function AuthShell({ children, eyebrow, title, detail }) {
   );
 }
 
+function PasswordField({ label, name, autoComplete, required, minLength, maxLength }) {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <label>{label}<span className="password-control">
+      <input
+        name={name}
+        type={visible ? 'text' : 'password'}
+        autoComplete={autoComplete}
+        required={required}
+        minLength={minLength}
+        maxLength={maxLength}
+      />
+      <button
+        className="password-toggle"
+        type="button"
+        aria-label={visible ? 'Hide password' : 'Show password'}
+        aria-pressed={visible}
+        title={visible ? 'Hide password' : 'Show password'}
+        onClick={() => setVisible((current) => !current)}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          {visible ? (
+            <>
+              <path d="M3 3l18 18M10.6 10.7a2 2 0 002.7 2.7" />
+              <path d="M9.9 5.2A10.8 10.8 0 0112 5c5 0 8.5 4.3 9.5 7-.4 1.1-1.2 2.3-2.3 3.4M6.2 6.2C3.9 7.7 2.8 9.9 2.5 12c.5 1.5 2.2 4 5.2 5.4 1.3.6 2.7.9 4.3.9 1 0 1.9-.1 2.8-.4" />
+            </>
+          ) : (
+            <>
+              <path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z" />
+              <circle cx="12" cy="12" r="3" />
+            </>
+          )}
+        </svg>
+      </button>
+    </span></label>
+  );
+}
+
 function LoginPage() {
   const { user, login } = useAuth();
   const location = useLocation();
@@ -93,7 +132,7 @@ function LoginPage() {
       {location.state?.notice && <p className="notice" role="status">{location.state.notice}</p>}
       <form className="form-stack" onSubmit={submit}>
         <label>Username<input name="username" autoComplete="username" required maxLength="50" /></label>
-        <label>Password<input name="password" type="password" autoComplete="current-password" required /></label>
+        <PasswordField label="Password" name="password" autoComplete="current-password" required />
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="primary-button" disabled={busy}>{busy ? 'Signing in…' : 'Sign in'} <span aria-hidden="true">↗</span></button>
       </form>
@@ -130,7 +169,7 @@ function RegisterPage() {
       <form className="form-stack" onSubmit={submit}>
         <label>Username<input name="username" autoComplete="username" required minLength="3" maxLength="50" pattern="[A-Za-z0-9._]+-?" /></label>
         <label>Email<input name="email" type="email" autoComplete="email" required maxLength="255" /></label>
-        <label>Password<input name="password" type="password" autoComplete="new-password" required minLength="12" maxLength="72" /></label>
+        <PasswordField label="Password" name="password" autoComplete="new-password" required minLength="12" maxLength="72" />
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="primary-button" disabled={busy}>{busy ? 'Creating account…' : 'Create account'} <span aria-hidden="true">↗</span></button>
       </form>
@@ -197,7 +236,7 @@ function DashboardPage({ role }) {
     <main className={`dashboard-shell ${info.tone}`}>
       <header className="topbar">
         <Link className="wordmark dark-wordmark" to={roleRoutes[role]}><span className="brand-mark">N</span> Northstar</Link>
-        <div className="topbar-right"><span className="role-chip">{user.role}</span><span className="topbar-user">{user.username}</span><button className="signout-button" onClick={signOut} aria-label="Sign out" title="Sign out">↗</button></div>
+        <div className="topbar-right"><span className="role-chip">{user.role}</span><span className="topbar-user">{user.username}</span><button className="signout-button" onClick={signOut} aria-label="Logout" title="Logout"><span aria-hidden="true">↗</span>Logout</button></div>
       </header>
       <div className="dashboard-content">
         <div className="dashboard-heading">

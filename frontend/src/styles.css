@@ -45,6 +45,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .form-stack label { display: grid; gap: 8px; color: #3b4943; font-size: 13px; font-weight: 600; }
 .form-stack input { width: 100%; min-height: 48px; padding: 0 13px; border: 1px solid #d5ddd5; border-radius: 3px; color: var(--ink); background: #fff; transition: border-color 150ms, box-shadow 150ms; }
 .form-stack input:focus { border-color: #577e3e; box-shadow: 0 0 0 3px rgba(110, 156, 71, 0.12); outline: 0; }
+.password-control { position: relative; display: block; }
+.form-stack .password-control input { padding-right: 48px; }
+.password-toggle { position: absolute; top: 50%; right: 5px; display: grid; width: 38px; height: 38px; place-items: center; padding: 0; border: 0; border-radius: 2px; color: #68746f; background: transparent; cursor: pointer; transform: translateY(-50%); }
+.password-toggle:hover { color: var(--forest); background: #f1f5ee; }
+.password-toggle svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 .primary-button { display: flex; align-items: center; justify-content: space-between; min-height: 50px; margin-top: 5px; padding: 0 16px; border: 0; border-radius: 3px; color: #f7faef; background: var(--forest); cursor: pointer; font-size: 14px; font-weight: 700; transition: background 140ms, transform 140ms; }
 .primary-button:hover:not(:disabled) { background: #254a41; transform: translateY(-1px); }
 .primary-button:disabled { cursor: wait; opacity: 0.65; }
@@ -61,7 +66,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .topbar-right { display: flex; align-items: center; gap: 16px; }
 .role-chip { padding: 6px 8px; border: 1px solid var(--line); border-radius: 2px; color: #526159; background: #fff; font-family: var(--mono); font-size: 10px; }
 .topbar-user { max-width: 150px; overflow: hidden; color: #4c5953; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-.signout-button { display: grid; width: 34px; aspect-ratio: 1; place-items: center; border: 1px solid var(--line); border-radius: 2px; color: #405149; background: transparent; cursor: pointer; font-size: 18px; transform: rotate(90deg); }
+.signout-button { display: inline-flex; min-height: 34px; align-items: center; justify-content: center; gap: 7px; padding: 0 10px; border: 1px solid var(--line); border-radius: 2px; color: #405149; background: transparent; cursor: pointer; font-size: 12px; font-weight: 600; }
+.signout-button span { font-size: 16px; transform: rotate(90deg); }
 .signout-button:hover { border-color: var(--forest); color: var(--forest); }
 .dashboard-content { width: min(100% - 48px, 1120px); margin: 0 auto; padding: 68px 0 28px; }
 .dashboard-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; padding-bottom: 42px; border-bottom: 1px solid var(--line); animation: enter-up 420ms ease-out both; }
