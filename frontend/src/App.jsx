@@ -8,6 +8,22 @@ const roleRoutes = {
   ROLE_ADMIN: '/admin',
 };
 
+const pageTitles = {
+  '/login': 'Access',
+  '/register': 'Register',
+  '/user': 'User Dashboard',
+  '/manager': 'Manager Dashboard',
+  '/admin': 'Admin Dashboard',
+};
+
+const headerLabels = {
+  '/login': 'Access',
+  '/register': 'Access',
+  '/user': 'User Dashboard',
+  '/manager': 'Manager Dashboard',
+  '/admin': 'Admin Dashboard',
+};
+
 const AuthContext = createContext(null);
 const useAuth = () => useContext(AuthContext);
 
@@ -40,10 +56,12 @@ function AuthProvider({ children }) {
 }
 
 function AuthShell({ children, eyebrow, title, detail }) {
+  const location = useLocation();
+
   return (
     <main className="auth-layout">
       <aside className="auth-aside">
-        <Link className="wordmark" to="/login"><span className="brand-mark">N</span> Northstar</Link>
+        <Link className="wordmark" to="/login">{headerLabels[location.pathname] || 'Access'}</Link>
         <div className="aside-copy">
           <p className="eyebrow">ACCESS CONTROL / 01</p>
           <h1>One account.<br />The right access.</h1>
@@ -194,6 +212,7 @@ const pageInfo = {
 
 function DashboardPage({ role }) {
   const { user, logout } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
   const [dashboard, setDashboard] = useState(null);
   const [users, setUsers] = useState([]);
@@ -235,7 +254,7 @@ function DashboardPage({ role }) {
   return (
     <main className={`dashboard-shell ${info.tone}`}>
       <header className="topbar">
-        <Link className="wordmark dark-wordmark" to={roleRoutes[role]}><span className="brand-mark">N</span> Northstar</Link>
+        <Link className="wordmark dark-wordmark" to={roleRoutes[role]}>{headerLabels[location.pathname] || 'Access'}</Link>
         <div className="topbar-right"><span className="role-chip">{user.role}</span><span className="topbar-user">{user.username}</span><button className="signout-button" onClick={signOut} aria-label="Logout" title="Logout"><span aria-hidden="true">↗</span>Logout</button></div>
       </header>
       <div className="dashboard-content">
@@ -281,6 +300,12 @@ function DashboardPage({ role }) {
 
 function AppRoutes() {
   const { user } = useAuth();
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = pageTitles[location.pathname] || 'Access';
+  }, [location.pathname]);
+
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />

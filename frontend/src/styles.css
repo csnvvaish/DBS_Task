@@ -28,7 +28,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .auth-aside { position: relative; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; min-height: 100vh; padding: 42px 48px 34px; color: #f5f8ed; background-color: var(--forest); background-image: radial-gradient(rgba(200, 240, 120, 0.17) 0.7px, transparent 0.7px); background-size: 18px 18px; }
 .auth-aside::after { position: absolute; right: -130px; bottom: 14%; width: 340px; height: 340px; border: 1px solid rgba(200, 240, 120, 0.21); border-radius: 50%; box-shadow: 0 0 0 38px rgba(200, 240, 120, 0.04), 0 0 0 76px rgba(200, 240, 120, 0.035); content: ''; pointer-events: none; }
 .wordmark { z-index: 1; display: inline-flex; align-items: center; gap: 11px; width: fit-content; text-decoration: none; font-family: var(--display); font-size: 18px; font-weight: 800; }
-.brand-mark { display: inline-grid; width: 30px; aspect-ratio: 1; place-items: center; color: var(--forest); background: var(--mint); font-family: var(--display); font-size: 17px; font-weight: 800; }
 .aside-copy { z-index: 1; max-width: 420px; margin: auto 0; padding: 58px 0 88px; animation: enter-up 480ms ease-out both; }
 .eyebrow { margin: 0 0 14px; color: #78867e; font-family: var(--mono); font-size: 10px; font-weight: 500; line-height: 1.5; }
 .auth-aside .eyebrow { color: var(--mint); }
@@ -62,7 +61,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .dashboard-shell { min-height: 100vh; background: #f3f5f1; }
 .topbar { display: flex; align-items: center; justify-content: space-between; min-height: 68px; padding: 0 clamp(20px, 5vw, 76px); border-bottom: 1px solid var(--line); background: var(--paper); }
 .dark-wordmark { color: var(--ink); font-size: 16px; }
-.dark-wordmark .brand-mark { width: 27px; font-size: 15px; }
 .topbar-right { display: flex; align-items: center; gap: 16px; }
 .role-chip { padding: 6px 8px; border: 1px solid var(--line); border-radius: 2px; color: #526159; background: #fff; font-family: var(--mono); font-size: 10px; }
 .topbar-user { max-width: 150px; overflow: hidden; color: #4c5953; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
